@@ -34,7 +34,7 @@ function media(grade) {
 }
 
 const mediaClass = media(grade)
-console.log(`Média é ${mediaClass}`) 
+console.log(`Media is ${mediaClass}`) 
 ```
 
 → Declarative paradigm
@@ -107,10 +107,10 @@ This means that we will have two variables pointing to the same location in memo
 ## PLoP
 
 - Place-Oriented Programming;
-- Nova informações substituem as antigas;
-- Surgiu de uma limitação do início da computação
-- Pouca RAM e pouco disco
-
+- New information replaces the old;
+- Arose from a limitation in early computing
+- Limited RAM and disk space
+  
 1940 → I invented a bit of memory
 
 1953 → I invented a byte of memory
