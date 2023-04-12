@@ -240,7 +240,7 @@ To minimize temporal coupling, it is recommended to divide the program into inde
 
 </aside>
 
-![Untitled](Functional%20Programming%201863f38129f24b0ab4ce5aa83e652e87/Untitled.png)
+![Untitled](images/Untitled.png)
 
 In Javascript, the heap is the part of the computer memory where objects are stored. It is managed by the garbage collector of Javascript and is responsible for allocating and deallocating memory for dynamically created and removed objects during program execution.
 
@@ -255,7 +255,7 @@ Efficient management of the heap is important to ensure that a Javascript progra
 
 </aside>
 
-![Untitled](Functional%20Programming%201863f38129f24b0ab4ce5aa83e652e87/Untitled%201.png)
+![Untitled](images/Untitled%201.png)
 
 In Javascript, the stack is a data structure used to store information about code execution. It is a stack that contains a series of frames, each of which represents an execution context.
 
@@ -272,7 +272,7 @@ In summary, the stack is a crucial data structure in the execution of Javascript
 
 </aside>
 
-![Untitled](Functional%20Programming%201863f38129f24b0ab4ce5aa83e652e87/Untitled%202.png)
+![Untitled](images/Untitled%202.png)
 
 The Event Queue is an important part of Javascript's asynchronous programming model. It is a queue (or list) of events (or tasks) waiting to be executed. Each event in the queue is associated with a callback function that will be executed when the event is processed.
 
@@ -482,7 +482,7 @@ In this example, we define a function called **`greet`** and then immediately ca
 
 ## Callback
 
-![Callback-notitle.svg](Functional%20Programming%201863f38129f24b0ab4ce5aa83e652e87/Callback-notitle.svg)
+![Callback-notitle.svg](images/Callback-notitle.svg)
 
 In programming, a callback is a function that is passed as an argument to another function and will be executed when a certain event occurs or when the original function finishes its execution.
 
