@@ -1,9 +1,11 @@
 # Functional Programming
 
 <aside>
-🔥 Functional programming is a paradigm that emphasizes using functions as the foundation of software. These functions are treated as first-class citizens, meaning they can be assigned to variables, passed as arguments, and returned as values. By writing independent functions that can solve complex problems, programmers can combine them together. These functions should have no side effects and emphasize immutability, allowing for more predictable and easier to reason about code. Recursion is also essential, allowing functions to call themselves in a more elegant way than iterative loops. Popular functional programming languages include Haskell, Lisp, and Clojure, but many modern programming languages, such as JavaScript and Python, also have functional programming features. While it can lead to concise, modular, and reusable code, functional programming may not be suitable for all programming tasks due to its steep learning curve.
+🔥 Functional programming is a programming paradigm that emphasizes using functions as the foundation of software. Functions are treated as first-class citizens, meaning they can be assigned to variables, passed as arguments, and returned as values.
 
 </aside>
+
+This allows programmers to write independent functions that can solve complex problems and combine them together. Functions should have no side effects and emphasize immutability, making code more predictable and easier to reason about. Recursion is also essential, allowing functions to call themselves in a more elegant way than iterative loops. Popular functional programming languages include Haskell, Lisp, and Clojure, and many modern programming languages also have functional programming features. However, functional programming has a steep learning curve and may not be suitable for all tasks.
 
 ## Differences between imperative and declarative
 
@@ -17,58 +19,143 @@
 | better known             | less known                |
 | more explicit            | less explicit             |
 
-## Examples of code:
+## Examples
 
-→ Imperative Paradigm
+### Imperative Paradigm
+
+The imperative paradigm is a programming paradigm that focuses on describing how a program should achieve its goals by giving explicit instructions, or commands, that modify the program state. In the imperative paradigm, a program is seen as a sequence of instructions that manipulate variables and control structures in order to achieve a specific result.
+
+In an imperative program, the programmer specifies a sequence of operations that must be executed in order to achieve a desired result. These operations are typically expressed using control structures such as loops, conditionals, and subroutines, and they can modify the program state by changing the values of variables, reading or writing to input/output devices, or calling other functions.
+
+Here's an example of an imperative program that prints the first 10 even numbers:
 
 ```jsx
-const grades = [9, 7, 6, 4, 10]
-
-function media(grade) {
-	let total = 0
-	for(let i = 0; i < grade.length; i++) {
-			total += grades[i]
-	}
-
-	return total / grades.length
+for (let i = 0; i < 20; i++) {
+  if (i % 2 === 0) {
+    console.log(i);
+  }
 }
-
-const mediaClass = media(grade)
-console.log(`Media is ${mediaClass}`) 
 ```
 
-→ Declarative paradigm
+In this example, the program uses a **`for`** loop to iterate over the numbers from 0 to 19. For each number, it checks whether it is even using an **`if`** statement, and if so, it prints it to the console using the **`console.log`** function.
+
+The imperative paradigm is widely used in programming, especially in systems programming, where performance and control over low-level hardware are important. However, it can lead to code that is difficult to read and maintain, especially as programs become more complex.
+
+One of the main challenges of the imperative paradigm is managing the program state and ensuring that it remains consistent as the program executes. Imperative programs can also be prone to bugs, as the programmer must ensure that the sequence of instructions is correct and does not produce unexpected behavior.
+
+### Declarative Paradigm
+
+The declarative paradigm is a programming paradigm that focuses on describing what a program should achieve, rather than how to achieve it. In the declarative paradigm, a program is expressed in terms of a set of rules or constraints that define the desired output or behavior.
+
+In a declarative program, the programmer specifies a set of rules or constraints that define the problem domain, and a set of operations or transformations that should be applied to the data in order to produce the desired output. The program does not specify the sequence of operations, but rather the relationships between data elements and the desired outcomes.
+
+One of the key benefits of the declarative paradigm is that it allows the programmer to focus on the problem domain and the desired outcomes, rather than the details of how to achieve those outcomes. This can make programs easier to read, maintain, and reason about, especially as programs become more complex.
+
+Here's an example of a declarative program that calculates the sum of an array of numbers:
 
 ```jsx
-const grades = [9, 7, 6, 4, 10]
+const numbers = [1, 2, 3, 4, 5];
 
-const sum = (a, b) => a + b
-const divide = (a, b) => a / b
+const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
-const mediaClass = divide(grades.reduce(sum), grades.length)
-
-console.log(`Media is ${mediaClass}`) 
+console.log(sum); // 15
 ```
+
+In this example, the program expresses the desired outcome in terms of a single operation, the **`reduce()`** function, which takes an array of numbers and returns their sum. The program does not specify the sequence of operations that should be used to achieve this outcome, but rather relies on the built-in **`reduce()`** function to do the work.
+
+The declarative paradigm is widely used in functional programming, where programs are expressed in terms of data transformations and operations on immutable data structures. It is also used in logic programming, where programs are expressed in terms of logical rules and constraints that define the relationships between data elements.
+
+One of the main challenges of the declarative paradigm is that it can be less intuitive for programmers who are used to thinking in terms of imperative programs. Declarative programs can also be less efficient than imperative programs, as they may require more computation to achieve the same result. However, the benefits of declarative programming, such as increased readability and maintainability, often outweigh these drawbacks in many contexts.
+
+---
 
 ## First Class Functions
 
- → Functions are values
+In programming languages that support first-class functions, functions are treated as first-class citizens, meaning they can be treated just like any other value in the language, such as a number or a string. This means that functions can be assigned to variables, passed as arguments to other functions, and returned as values from functions.
+
+Here's an example of assigning a function to a variable in JavaScript:
 
 ```jsx
-function double(x) {
-	return x * 2 
+const add = function(a, b) {
+  return a + b;
+}
+```
+
+In this example, the **`add`** function is defined using a function expression and then assigned to the **`add`** variable. The **`add`** variable can now be used just like any other variable in the program.
+
+First-class functions enable a wide range of programming techniques, such as higher-order functions, which are functions that take other functions as arguments or return functions as values. Higher-order functions are used extensively in functional programming, and can simplify many programming tasks by allowing for generic and reusable code.
+
+Here's an example of using a higher-order function to implement a map function in JavaScript:
+
+```jsx
+const map = function(array, transform) {
+  const result = [];
+  for (const element of array) {
+    result.push(transform(element));
+  }
+  return result;
 }
 
-double(20)
+const numbers = [1, 2, 3, 4, 5];
+
+const doubled = map(numbers, function(n) {
+  return n * 2;
+});
+
+console.log(doubled); // [2, 4, 6, 8, 10]
+
 ```
 
-→ Composition of functions
+In this example, the **`map`** function takes an array and a transformation function as arguments, and returns a new array with the transformed values. The transformation function is a higher-order function, which takes an element of the array as input and returns a transformed value. The **`map`** function then applies this transformation to each element of the array, using a loop, and returns the result.
+
+## Composition of Functions
+
+Function composition is a technique that allows you to create a new function by combining two or more existing functions. This can be achieved using a variety of approaches, including chaining function calls, using the **`apply`** or **`call`** methods, and using higher-order functions.
+
+Here's an example of function composition using chaining function calls:
 
 ```jsx
-const overdone = composition(scream, stress)
+function add(a, b) {
+  return a + b;
+}
 
-overdone('PARA')
+function multiply(a, b) {
+  return a * b;
+}
+
+function addThenMultiply(a, b, c) {
+  return multiply(add(a, b), c);
+}
+
+const result = addThenMultiply(2, 3, 4);
+console.log(result); // 20
 ```
+
+In this example, we have three functions - **`add`**, **`multiply`**, and **`addThenMultiply`**. The **`addThenMultiply`** function combines the **`add`** and **`multiply`** functions by chaining their calls together. The result of the **`add`** function, which is the sum of **`a`** and **`b`**, is passed as the first argument to the **`multiply`** function, along with **`c`**. The final result is the product of the sum of **`a`** and **`b`** and **`c`**.
+
+Another approach to function composition in JavaScript is to use higher-order functions. Here's an example:
+
+```jsx
+function add(a, b) {
+  return a + b;
+}
+
+function multiply(a, b) {
+  return a * b;
+}
+
+function compose(fn1, fn2) {
+  return function(a, b, c) {
+    return fn2(fn1(a, b), c);
+  };
+}
+
+const addAndMultiply = compose(add, multiply);
+const result = addAndMultiply(2, 3, 4);
+console.log(result); // 20
+```
+
+In this example, we define a new function called **`compose`**, which takes two functions as arguments and returns a new function that combines them. The **`addAndMultiply`** function is created by passing **`add`** and **`multiply`** to **`compose`**. When **`addAndMultiply`** is called with the arguments **`(2, 3, 4)`**, the output of **`add`** is passed as the first argument to **`multiply`**, resulting in the value **`20`**.
 
 ---
 
@@ -110,7 +197,7 @@ This means that we will have two variables pointing to the same location in memo
 - New information replaces the old;
 - Arose from a limitation in early computing
 - Limited RAM and disk space
-  
+
 1940 → I invented a bit of memory
 
 1953 → I invented a byte of memory
@@ -141,9 +228,19 @@ To minimize temporal coupling, it is recommended to divide the program into inde
 
 ## How Javascript Works
 
+<aside>
+🔥 A session on how JavaScript works can focus on three important aspects of its runtime environment: the heap, call stack, and event queue.
+
+</aside>
+
 ### HEAP
 
-![Untitled](images/Untitled.png)
+<aside>
+🔥 The heap is the memory space where objects are stored in JavaScript. When you declare a new variable or object in your code, it is allocated memory on the heap.
+
+</aside>
+
+![Untitled](Functional%20Programming%201863f38129f24b0ab4ce5aa83e652e87/Untitled.png)
 
 In Javascript, the heap is the part of the computer memory where objects are stored. It is managed by the garbage collector of Javascript and is responsible for allocating and deallocating memory for dynamically created and removed objects during program execution.
 
@@ -153,7 +250,12 @@ Efficient management of the heap is important to ensure that a Javascript progra
 
 ### STACK
 
-![Untitled](images/Untitled%201.png)
+<aside>
+🔥 The call stack is a data structure that keeps track of the current position in your code. Whenever a function is called, its context is pushed onto the stack. When a function returns, its context is popped off the stack, and execution resumes at the previous position.
+
+</aside>
+
+![Untitled](Functional%20Programming%201863f38129f24b0ab4ce5aa83e652e87/Untitled%201.png)
 
 In Javascript, the stack is a data structure used to store information about code execution. It is a stack that contains a series of frames, each of which represents an execution context.
 
@@ -165,7 +267,12 @@ In summary, the stack is a crucial data structure in the execution of Javascript
 
 ### EVENT QUEUE
 
-![Untitled](images/Untitled%202.png)
+<aside>
+🔥 The event queue is a list of events that have been triggered but are waiting to be processed. JavaScript is single-threaded, meaning that it can only execute one task at a time. When an event occurs, such as a click or a network request, it is added to the event queue. The event loop continuously checks the event queue for new events and processes them one by one.
+
+</aside>
+
+![Untitled](Functional%20Programming%201863f38129f24b0ab4ce5aa83e652e87/Untitled%202.png)
 
 The Event Queue is an important part of Javascript's asynchronous programming model. It is a queue (or list) of events (or tasks) waiting to be executed. Each event in the queue is associated with a callback function that will be executed when the event is processed.
 
@@ -177,9 +284,62 @@ The use of the event queue allows Javascript to execute asynchronous tasks witho
 
 In summary, the event queue is a fundamental part of Javascript's asynchronous programming model, and its proper use is important to ensure that the code is executed efficiently and responsively.
 
-## Arrow Function
+<aside>
+🔥 Understanding these three components is essential to understanding how JavaScript works at a fundamental level. It helps developers write more efficient and effective code, by knowing how memory is allocated, how the call stack operates, and how event-driven programming works in JavaScript.
 
-![Untitled](images/Untitled%203.png)
+</aside>
+
+---
+
+# Understanding Functions in JavaScript
+
+## Function Expression
+
+A function expression is a way to define a function as a value assigned to a variable. This allows the function to be passed around and used in a flexible manner, much like any other data type.
+
+Here's an example of a function expression in JavaScript:
+
+```jsx
+function add(a, b) {
+  return a + b;
+};
+
+const result = add(2, 3); // result is 5
+```
+
+In this example, we define a function **`add`** using the function expression syntax.
+
+## Anonymous Function
+
+An anonymous function is a function that has no name and is not bound to any identifier. Instead, it is usually defined as a function expression, which is a way to define a function as a value assigned to a variable.
+
+Here's an example of an anonymous function defined using a function expression:
+
+```jsx
+const sum = function(a, b) {
+  return a + b;
+};
+
+const result = sum(2, 3); // result is 5
+```
+
+In this example, we define a function expression that adds two numbers together and assigns it to the variable **`sum`**. Because the function has no name, it is referred to as an anonymous function.
+
+## Immediately Invoked Function Expression (IIFE)
+
+An Immediately Invoked Function Expression (IIFE) in JavaScript is a function that is executed immediately after it is defined, without the need for a separate function call. It is a common pattern used in JavaScript to create a private scope for code, prevent naming conflicts, and control the timing of code execution.
+
+Here's an example of an IIFE:
+
+```jsx
+ (function() {
+  console.log('This code is executed immediately.');
+})();
+```
+
+In this example, we define an anonymous function inside a pair of parentheses, and immediately invoke it by adding another pair of parentheses after the function definition. The function body contains a call to **`console.log`**, which prints a message to the console.
+
+## Arrow Function
 
 Arrow function is an anonymous JavaScript function introduced in ES6 (ECMAScript 2015) that uses the "arrow" syntax (=>) to define a function more succinctly and with a different variable scope than traditional functions.
 
@@ -206,7 +366,6 @@ const pow = base => exp => Math.pow(base,exp)
 console.log(pow(2)(4))
 
 // this
-
 Array.prototype.log = function() {
 	console.log(this)
 }
@@ -228,9 +387,102 @@ Another important difference is that arrow functions do not have their own **`th
 
 Finally, arrow functions are generally more concise and easier to read than traditional functions, especially when it comes to simple functions or single returns.
 
+## Constructor Functions
+
+Constructor functions in JavaScript are a way to create objects that share the same properties and methods. They are typically defined with a capitalized name to differentiate them from regular functions.
+
+Here's an example of a constructor function that creates a **`Person`** object with a **`name`** property and a **`greet`** method:
+
+```jsx
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.greet = function() {
+  console.log('Hello, my name is ' + this.name);
+}
+```
+
+In this example, we define a **`Person`** constructor function that takes a **`name`** parameter and sets it as the **`name`** property on the newly created object using the **`this`** keyword. We also define a **`greet`** method on the **`Person`** prototype, which logs a greeting message to the console with the object's **`name`** property.
+
+To create a new **`Person`** object, we can use the **`new`** keyword to call the **`Person`** constructor:
+
+```jsx
+const john = new Person('John');
+john.greet(); // Output: Hello, my name is John
+```
+
+In this example, we create a new **`Person`** object called **`john`** with the name 'John'. We then call the **`greet`** method on the **`john`** object, which logs a greeting message to the console with the object's **`name`** property.
+
+## Getter Functions
+
+Getter functions in JavaScript are used to retrieve the value of an object's property. They allow you to define a method that is called when a property is accessed, rather than simply returning the value of the property directly.
+
+To define a getter function, you use the **`get`** keyword followed by the name of the property, and then define a function that returns the value of the property. Here's an example:
+
+```jsx
+const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  get fullName() {
+    return this.firstName + ' ' + this.lastName;
+  }
+};
+
+console.log(person.fullName); // Output: "John Doe"
+```
+
+In this example, we define an object called **`person`** with two properties: **`firstName`** and **`lastName`**. We then define a getter function called **`fullName`** using the **`get`** keyword. When we access the **`fullName`** property, the getter function is called and returns the concatenation of **`firstName`** and **`lastName`**.
+
+Getter functions can be useful when you want to calculate a property value on the fly, or when you want to perform some kind of validation or transformation on a property value before returning it. They also allow you to create properties that appear to be read-only, since there is no direct way to set the value of a getter property.
+
+Here's an example of using a getter function to calculate the area of a circle based on its radius:
+
+```jsx
+const circle = {
+  radius: 5,
+  get area() {
+    return Math.PI * this.radius * this.radius;
+  }
+};
+
+console.log(circle.area); // Output: 78.53981633974483
+```
+
+In this example, we define an object called **`circle`** with a **`radius`** property and a **`get`** function called **`area`**. When we access the **`area`** property, the getter function is called and calculates the area of the circle using the formula **`πr^2`**.
+
+## Hoisting
+
+Hoisting in JavaScript is a behavior where variable and function declarations are moved to the top of their respective scopes during the compilation phase, before the code is executed. This means that variables and functions can be used before they are declared.
+
+However, it's important to note that only the declarations are hoisted, not the assignments. This means that while you can use a variable or function before it is declared, any assignments or function expressions will not be hoisted and will result in a reference error.
+
+Here's an example of hoisting in action:
+
+```jsx
+console.log(myName); // Output: undefined
+var myName = "John";
+```
+
+In this example, we declare a variable called **`myName`** and then immediately log it to the console. However, since the declaration is hoisted to the top of the scope, the value of **`myName`** is **`undefined`** at the time of the **`console.log`** statement.
+
+Here's another example with a function declaration:
+
+```jsx
+greet("John"); // Output: "Hello John"
+
+function greet(name) {
+  console.log("Hello " + name);
+}
+```
+
+In this example, we define a function called **`greet`** and then immediately call it with a name argument. Since the function declaration is hoisted to the top of the scope, the call to **`greet`** is valid and will output "Hello John" to the console.
+
+---
+
 ## Callback
 
-![Callback-notitle.svg](images/Callback-notitle.svg)
+![Callback-notitle.svg](Functional%20Programming%201863f38129f24b0ab4ce5aa83e652e87/Callback-notitle.svg)
 
 In programming, a callback is a function that is passed as an argument to another function and will be executed when a certain event occurs or when the original function finishes its execution.
 
@@ -240,7 +492,7 @@ Another example is in user interface, where a callback function can be used to r
 
 The use of callbacks is an important technique in asynchronous programming and helps make the code more modular and flexible.
 
-Examples:
+- Examples:
 
 ```jsx
 function exec(fn, a, b) {
@@ -253,7 +505,7 @@ const subtract = (w,z) => console.log(w -z)
 
 exec(sum, 30, 40)
 
-const fn = () => consle.log('interval')
+const fn = () => console.log('interval')
 setInterval(fn, 1000)
 ```
 
@@ -360,7 +612,7 @@ In this example, the **`filter()`** function is called on the **`numbers`** arra
 
 The **`filter()`** function is a useful tool for filtering data in an array based on a condition. It can be used in a variety of scenarios, including selecting certain elements, removing unwanted elements, and much more.
 
-Below is the implementation of filter:
+Below is the implementation of `filter`:
 
 ```jsx
 Array.prototype.newFilter = function(fn) {
@@ -371,5 +623,82 @@ Array.prototype.newFilter = function(fn) {
 		}
 	}
 	return newArray;
+}
+```
+
+## Reduce
+
+The **`reduce()`** function in JavaScript is a method that is available on arrays. It is used to reduce an array to a single value by applying a callback function to each element of the array.
+
+The syntax of the **`reduce()`** function is as follows:
+
+```jsx
+array.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])
+```
+
+The **`callback`** function is called for each element in the array, and it can take up to four arguments:
+
+- **`accumulator`**: The accumulated value computed by the previous invocation of the **`callback`** function or the **`initialValue`**.
+- **`currentValue`**: The value of the current element being processed in the array.
+- **`index`** (optional): The index of the current element being processed in the array.
+- **`array`** (optional): The original array on which **`reduce()`** was called.
+
+The **`callback`** function should return the accumulated value after processing the current element. The **`reduce()`** function will then iterate through the array, calling the **`callback`** function for each element, and accumulating the result. The final value returned by **`reduce()`** will be the accumulated value after processing the last element in the array.
+
+If an **`initialValue`** is provided, it will be used as the initial accumulated value, and the **`callback`** function will start processing the first element in the array. If no **`initialValue`** is provided, the first element in the array will be used as the initial accumulated value, and the **`callback`** function will start processing the second element in the array.
+
+Here's an example of using **`reduce()`** to calculate the sum of an array of numbers:
+
+```jsx
+const numbers = [1, 2, 3, 4, 5];
+
+const sum = numbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 0);
+
+console.log(sum); // 15
+```
+
+In this example, the **`reduce()`** function is called on the **`numbers`** array, and a callback function is passed to it that takes the accumulated value and the current element, and returns the sum of the two. The **`reduce()`** function then iterates through the array, accumulating the sum of all elements, and returns the final sum.
+
+The **`reduce()`** function is a powerful tool for performing complex operations on arrays, including calculating averages, finding maximum or minimum values, and much more. It requires a good understanding of the callback function and how it accumulates values, but can be very useful in many scenarios.
+
+The declarative paradigm is a programming paradigm that focuses on describing what a program should achieve, rather than how to achieve it. In the declarative paradigm, a program is expressed in terms of a set of rules or constraints that define the desired output or behavior.
+
+In a declarative program, the programmer specifies a set of rules or constraints that define the problem domain, and a set of operations or transformations that should be applied to the data in order to produce the desired output. The program does not specify the sequence of operations, but rather the relationships between data elements and the desired outcomes.
+
+One of the key benefits of the declarative paradigm is that it allows the programmer to focus on the problem domain and the desired outcomes, rather than the details of how to achieve those outcomes. This can make programs easier to read, maintain, and reason about, especially as programs become more complex.
+
+Here's an example of a declarative program that calculates the sum of an array of numbers:
+
+```jsx
+const numbers = [1, 2, 3, 4, 5];
+
+const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+console.log(sum); // 15
+```
+
+In this example, the program expresses the desired outcome in terms of a single operation, the **`reduce()`** function, which takes an array of numbers and returns their sum. The program does not specify the sequence of operations that should be used to achieve this outcome, but rather relies on the built-in **`reduce()`** function to do the work.
+
+The declarative paradigm is widely used in functional programming, where programs are expressed in terms of data transformations and operations on immutable data structures. It is also used in logic programming, where programs are expressed in terms of logical rules and constraints that define the relationships between data elements.
+
+One of the main challenges of the declarative paradigm is that it can be less intuitive for programmers who are used to thinking in terms of imperative programs. Declarative programs can also be less efficient than imperative programs, as they may require more computation to achieve the same result. However, the benefits of declarative programming, such as increased readability and maintainability, often outweigh these drawbacks in many contexts.
+
+Below is the implementation of `reduce`:
+
+```jsx
+Array.prototype.myReduce = function(callback, initialValue) {
+  let accumulator = initialValue === undefined ? undefined : initialValue;
+
+  for (let i = 0; i < this.length; i++) {
+    if (accumulator !== undefined) {
+      accumulator = callback(accumulator, this[i], i, this);
+    } else {
+      accumulator = this[i];
+    }
+  }
+
+  return accumulator;
 }
 ```
