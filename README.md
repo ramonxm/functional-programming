@@ -759,7 +759,7 @@ myPromise.then((result) => {
 In this example, we create a Promise that resolves with a value of 5 after 1 second. We then chain two **`then`** methods together to perform some calculations on the result of the Promise. The first **`then`** method multiplies the result by 2, which returns a new Promise with a value of 10. The second **`then`** method logs the final result to the console. If any errors occur, they will be caught by the **`catch`** method.
 ## Async/Await
 
-`A**sync/await**` is a way to handle asynchronous operations that is built on top of **`Promises`**. The main difference between **`async/await`** and **`then/catch`** is the syntax and readability.
+**`Async/await`** is a way to handle asynchronous operations that is built on top of **`Promises`**. The main difference between **`async/await`** and **`then/catch`** is the syntax and readability.
 
 With **`async/await`**, you write asynchronous code that looks more like synchronous code. You use the **`async`** keyword before a function declaration to indicate that it will return a promise, and the **`await`** keyword within the function body to wait for a promise to resolve before continuing execution. Here is an example:
 
