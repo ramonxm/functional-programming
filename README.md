@@ -757,3 +757,32 @@ myPromise.then((result) => {
 ```
 
 In this example, we create a Promise that resolves with a value of 5 after 1 second. We then chain two **`then`** methods together to perform some calculations on the result of the Promise. The first **`then`** method multiplies the result by 2, which returns a new Promise with a value of 10. The second **`then`** method logs the final result to the console. If any errors occur, they will be caught by the **`catch`** method.
+## Async/Await
+
+`A**sync/await**` is a way to handle asynchronous operations that is built on top of **`Promises`**. The main difference between **`async/await`** and **`then/catch`** is the syntax and readability.
+
+With **`async/await`**, you write asynchronous code that looks more like synchronous code. You use the **`async`** keyword before a function declaration to indicate that it will return a promise, and the **`await`** keyword within the function body to wait for a promise to resolve before continuing execution. Here is an example:
+
+```jsx
+async function fetchData() {
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+  return data;
+}
+```
+
+In this example, the **`fetchData`** function is declared as **`async`**, which means that it will return a **`Promise`**. Within the function, we use the **`await`** keyword to wait for the **`fetch`** method to return a response, and then we use it again to wait for the **`json`** method to parse the response into data.
+
+With **`then/catch`**, you chain together methods that return promises using the **`then`** method. Here is an example:
+
+```jsx
+function fetchData() {
+  return fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .catch(error => console.log(error));
+}
+```
+
+In this example, the **`fetchData`** function returns a promise that resolves with the parsed JSON data or rejects with an error. We chain together the **`then`** and **`catch`** methods to handle the resolution and rejection of the promise.
+
+One advantage of **`async/await`** over **`then/catch`** is that it allows for more readable and concise code, especially when dealing with complex asynchronous logic. However, it's important to note that **`async/await`** is simply a syntax for working with **`Promises`** and is not a replacement for them.
