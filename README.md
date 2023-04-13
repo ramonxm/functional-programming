@@ -702,3 +702,58 @@ Array.prototype.myReduce = function(callback, initialValue) {
   return accumulator;
 }
 ```
+## Promise
+
+Promise is an object that represents the eventual completion or failure of an asynchronous operation, and its resulting value.
+
+Promises are a way to handle asynchronous operations without using callbacks, which can lead to callback hell and make code difficult to read and maintain. Instead of relying on callbacks to handle the result of an asynchronous operation, you can use Promises to handle success and failure cases in a more structured way.
+
+Here's an example of how you can create a Promise in JavaScript:
+
+```jsx
+const myPromise = new Promise((resolve, reject) => {
+  // Perform some asynchronous operation
+  setTimeout(() => {
+    const randomNumber = Math.random();
+    if (randomNumber < 0.5) {
+      resolve(randomNumber); // Promise is fulfilled
+    } else {
+      reject(new Error('Number too high')); // Promise is rejected
+    }
+  }, 1000);
+});
+```
+
+In this example, we create a new Promise object that takes a function with two arguments: **`resolve`** and **`reject`**. Within this function, we perform an asynchronous operation that resolves or rejects the Promise based on a random number. If the number is less than 0.5, the Promise is resolved with the number as its value. If the number is greater than or equal to 0.5, the Promise is rejected with an Error object.
+
+Once we have created the Promise, we can use its methods **`then`** and **`catch`** to handle the success and failure cases respectively. Here's an example:
+
+```jsx
+myPromise.then((result) => {
+  console.log(`The number is ${result}`);
+}).catch((error) => {
+  console.error(error);
+});
+```
+
+In this example, we use the **`then`** method to handle the resolved Promise, and log the result to the console. We use the **`catch`** method to handle the rejected Promise, and log the error to the console.
+
+Promises can be chained together using the **`then`** method, which returns a new Promise. This allows you to create a series of asynchronous operations that depend on each other. Here's an example:
+
+```jsx
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(5);
+  }, 1000);
+});
+
+myPromise.then((result) => {
+  return result * 2; // Returns a new Promise with a value of 10
+}).then((result) => {
+  console.log(result); // Output: 10
+}).catch((error) => {
+  console.error(error);
+});
+```
+
+In this example, we create a Promise that resolves with a value of 5 after 1 second. We then chain two **`then`** methods together to perform some calculations on the result of the Promise. The first **`then`** method multiplies the result by 2, which returns a new Promise with a value of 10. The second **`then`** method logs the final result to the console. If any errors occur, they will be caught by the **`catch`** method.
