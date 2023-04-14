@@ -786,3 +786,72 @@ function fetchData() {
 In this example, the **`fetchData`** function returns a promise that resolves with the parsed JSON data or rejects with an error. We chain together the **`then`** and **`catch`** methods to handle the resolution and rejection of the promise.
 
 One advantage of **`async/await`** over **`then/catch`** is that it allows for more readable and concise code, especially when dealing with complex asynchronous logic. However, it's important to note that **`async/await`** is simply a syntax for working with **`Promises`** and is not a replacement for them.
+## OOP
+
+JavaScript supports Object-Oriented Programming (OOP) through the use of objects and prototypes.
+
+In JavaScript, an object is a collection of key-value pairs, where the key is a string (or symbol) and the value can be any data type, including other objects. You can create an object using object literal syntax, like this:
+
+```jsx
+const person = {
+  name: 'John',
+  age: 30,
+  sayHello() {
+    console.log(`Hello, my name is ${this.name}.`);
+  }
+};
+```
+
+In this example, we define an object called **`person`** with properties for **`name`** and **`age`**, as well as a method called **`sayHello`** that uses the **`this`** keyword to refer to the current object.
+
+In JavaScript, you can also create object templates using constructor functions, which allow you to create multiple instances of an object with shared properties and methods. Here is an example:
+
+```jsx
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+Person.prototype.sayHello = function() {
+  console.log(`Hello, my name is ${this.name}.`);
+}
+
+const person1 = new Person('John', 30);
+const person2 = new Person('Jane', 25);
+```
+
+In this example, we define a constructor function called **`Person`** that takes in **`name`** and **`age`** arguments and sets them as properties on the **`this`** object. We also define a **`sayHello`** method on the **`Person.prototype`** object, which allows all instances of **`Person`** to share the same method.
+
+To create an instance of **`Person`**, we use the **`new`** keyword and call the **`Person`** constructor function with the desired arguments, like **`person1`** and **`person2`** in the example.
+
+JavaScript also supports inheritance through the use of prototypes. You can create a prototype chain by setting the **`prototype`** property of a constructor function to an object that contains shared properties and methods, like this:
+
+```jsx
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.sayHello = function() {
+  console.log(`Hello, my name is ${this.name}.`);
+}
+
+function Dog(name, breed) {
+  Animal.call(this, name);
+  this.breed = breed;
+}
+
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.sayBark = function() {
+  console.log('Woof!');
+}
+
+const dog1 = new Dog('Fido', 'Golden Retriever');
+```
+
+In this example, we define a **`Dog`** constructor function that inherits from the **`Animal`** constructor function. We use **`Object.create`** to create a new object with the **`Animal.prototype`** object as its prototype, which allows **`Dog`** to inherit the **`sayHello`** method. We also define a new method called **`sayBark`** on the **`Dog.prototype`** object.
+
+To create an instance of **`Dog`**, we use the **`new`** keyword and call the **`Dog`** constructor function with the desired arguments, like **`dog1`** in the example.
+
+Overall, JavaScript supports OOP through the use of objects, prototypes, and constructor functions, allowing you to create reusable code with shared properties and methods.
