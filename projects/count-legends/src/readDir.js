@@ -21,9 +21,25 @@ function elementsFinishedWith(array, pattern) {
   return array.filter((el) => el.endsWith(pattern));
 }
 
+function readArchive(archivePath) {
+  return new Promise((resolve, reject) => {
+    try {
+      const content = fs.readFileSync(archivePath, { encoding: "utf-8" });
+      resolve(content.toString());
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+function readArchives(paths) {
+  return Promise.all(paths.map(readArchive));
+}
+
 const filepath = path.join(__dirname, "..", "legends");
 
 readDir(filepath)
   .then((archives) => elementsFinishedWith(archives, ".srt"))
+  .then(readArchives)
   .then(log)
   .catch(error);
