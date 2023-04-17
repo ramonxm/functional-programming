@@ -36,10 +36,22 @@ function readArchives(paths) {
   return Promise.all(paths.map(readArchive));
 }
 
+function removeEmptyLines(array) {
+  return array.filter((el) => el.trim());
+}
+
+function removeWithInclude(array, pattern) {
+  return array.filter((el) => !el.includes(pattern));
+}
+
 const filepath = path.join(__dirname, "..", "legends");
 
 readDir(filepath)
   .then((archives) => elementsFinishedWith(archives, ".srt"))
   .then(readArchives)
+  .then((contents) => contents.join("\n"))
+  .then((allContents) => allContents.split("\n"))
+  .then((lines) => removeEmptyLines(lines))
+  .then((lines) => removeWithInclude(lines, "-->"))
   .then(log)
   .catch(error);
