@@ -44,6 +44,13 @@ function removeWithInclude(array, pattern) {
   return array.filter((el) => !el.includes(pattern));
 }
 
+function removeIfHasNumbers(array) {
+  return array.filter((el) => {
+    const num = parseInt(el.trim());
+    return num !== num;
+  });
+}
+
 const filepath = path.join(__dirname, "..", "legends");
 
 readDir(filepath)
@@ -53,5 +60,6 @@ readDir(filepath)
   .then((allContents) => allContents.split("\n"))
   .then((lines) => removeEmptyLines(lines))
   .then((lines) => removeWithInclude(lines, "-->"))
+  .then(removeIfHasNumbers)
   .then(log)
   .catch(error);
