@@ -79,9 +79,13 @@ function removeSymbols(symbols) {
     });
 }
 
-const joinContents = (contents) => contents.join("\n");
-const separateLines = (allContents) => allContents.split("\n");
-const separateByWords = (allContents) => allContents.split(" ");
+function joinContents(contents) {
+  return contents.join("\n");
+}
+
+function separateBy(pattern) {
+  return (allContents) => allContents.split(pattern);
+}
 
 const filepath = path.join(__dirname, "..", "legends");
 
@@ -89,12 +93,12 @@ readDir(filepath)
   .then(elementsFinishedWith(".srt"))
   .then(readArchives)
   .then(joinContents)
-  .then(separateLines)
+  .then(separateBy("\n"))
   .then(removeEmptyLines)
   .then(removeWithInclude("-->"))
   .then(removeIfHasNumbers)
   .then(removeSymbols(SYMBOLS))
   .then(joinContents)
-  .then(separateByWords)
+  .then(separateBy(" "))
   .then(log)
   .catch(error);
