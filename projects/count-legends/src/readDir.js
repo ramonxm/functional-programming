@@ -17,8 +17,8 @@ function readDir(filepath) {
   });
 }
 
-function elementsFinishedWith(array, pattern) {
-  return array.filter((el) => el.endsWith(pattern));
+function elementsFinishedWith(pattern) {
+  return (array) => array.filter((el) => el.endsWith(pattern));
 }
 
 function readArchive(archivePath) {
@@ -40,8 +40,8 @@ function removeEmptyLines(array) {
   return array.filter((el) => el.trim());
 }
 
-function removeWithInclude(array, pattern) {
-  return array.filter((el) => !el.includes(pattern));
+function removeWithInclude(pattern) {
+  return (array) => array.filter((el) => !el.includes(pattern));
 }
 
 function removeIfHasNumbers(array) {
@@ -54,12 +54,12 @@ function removeIfHasNumbers(array) {
 const filepath = path.join(__dirname, "..", "legends");
 
 readDir(filepath)
-  .then((archives) => elementsFinishedWith(archives, ".srt"))
+  .then(elementsFinishedWith(".srt"))
   .then(readArchives)
   .then((contents) => contents.join("\n"))
   .then((allContents) => allContents.split("\n"))
-  .then((lines) => removeEmptyLines(lines))
-  .then((lines) => removeWithInclude(lines, "-->"))
+  .then(removeEmptyLines)
+  .then(removeWithInclude("-->"))
   .then(removeIfHasNumbers)
   .then(log)
   .catch(error);
