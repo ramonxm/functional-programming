@@ -51,6 +51,34 @@ function removeIfHasNumbers(array) {
   });
 }
 
+const SYMBOLS = [
+  ".",
+  "?",
+  "-",
+  ",",
+  '"',
+  "_",
+  "♪",
+  "<i>",
+  "</i>",
+  "\r",
+  "[",
+  "]",
+  "(",
+  ")",
+];
+
+function removeSymbols(symbols) {
+  return (array) =>
+    array.map((el) => {
+      let textWithoutSymbols = el;
+      symbols.forEach((symbol) => {
+        textWithoutSymbols = textWithoutSymbols.split(symbol).join("");
+      });
+      return textWithoutSymbols;
+    });
+}
+
 const filepath = path.join(__dirname, "..", "legends");
 
 readDir(filepath)
@@ -61,5 +89,6 @@ readDir(filepath)
   .then(removeEmptyLines)
   .then(removeWithInclude("-->"))
   .then(removeIfHasNumbers)
+  .then(removeSymbols(SYMBOLS))
   .then(log)
   .catch(error);
