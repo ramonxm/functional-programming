@@ -87,6 +87,19 @@ function separateBy(pattern) {
   return (allContents) => allContents.split(pattern);
 }
 
+function groupByWords(words) {
+  return Object.values(
+    words.reduce((acc, word) => {
+      const wordInLowerCase = word.toLowerCase();
+      const quantity = acc[wordInLowerCase]
+        ? acc[wordInLowerCase]?.quantity + 1
+        : 1;
+      acc[wordInLowerCase] = { element: wordInLowerCase, quantity };
+      return acc;
+    }, {})
+  );
+}
+
 const filepath = path.join(__dirname, "..", "legends");
 
 readDir(filepath)
@@ -100,5 +113,8 @@ readDir(filepath)
   .then(removeSymbols(SYMBOLS))
   .then(joinContents)
   .then(separateBy(" "))
+  .then(removeEmptyLines)
+  .then(removeIfHasNumbers)
+  .then(groupByWords)
   .then(log)
   .catch(error);
