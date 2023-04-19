@@ -79,16 +79,22 @@ function removeSymbols(symbols) {
     });
 }
 
+const joinContents = (contents) => contents.join("\n");
+const separateLines = (allContents) => allContents.split("\n");
+const separateByWords = (allContents) => allContents.split(" ");
+
 const filepath = path.join(__dirname, "..", "legends");
 
 readDir(filepath)
   .then(elementsFinishedWith(".srt"))
   .then(readArchives)
-  .then((contents) => contents.join("\n"))
-  .then((allContents) => allContents.split("\n"))
+  .then(joinContents)
+  .then(separateLines)
   .then(removeEmptyLines)
   .then(removeWithInclude("-->"))
   .then(removeIfHasNumbers)
   .then(removeSymbols(SYMBOLS))
+  .then(joinContents)
+  .then(separateByWords)
   .then(log)
   .catch(error);
