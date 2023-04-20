@@ -70,13 +70,9 @@ const SYMBOLS = [
 
 function removeSymbols(symbols) {
   return (array) =>
-    array.map((el) => {
-      let textWithoutSymbols = el;
-      symbols.forEach((symbol) => {
-        textWithoutSymbols = textWithoutSymbols.split(symbol).join("");
-      });
-      return textWithoutSymbols;
-    });
+    array.map((el) =>
+      symbols.reduce((acc, symbol) => acc.split(symbol).join(""), el)
+    );
 }
 
 function joinContents(contents) {
