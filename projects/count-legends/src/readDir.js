@@ -100,6 +100,14 @@ function groupByWords(words) {
   );
 }
 
+function orderByNumericalAttribute(attribute, order) {
+  return (array) => {
+    const asc = (a, b) => a[attribute] - b[attribute];
+    const desc = (a, b) => b[attribute] - a[attribute];
+    return array.sort(order === "asc" ? asc : desc);
+  };
+}
+
 const filepath = path.join(__dirname, "..", "legends");
 
 readDir(filepath)
@@ -116,5 +124,6 @@ readDir(filepath)
   .then(removeEmptyLines)
   .then(removeIfHasNumbers)
   .then(groupByWords)
+  .then(orderByNumericalAttribute("quantity", "asc"))
   .then(log)
   .catch(error);
