@@ -83,3 +83,15 @@ execute(sum, 4, 5, 6)('The result of sum is')
 execute(multiple, 10, 20)('The result of multiple is')
 
 ```
+## First Class Function
+
+A programming language is said to have first-class functions when functions in that language are treated like any other variable.
+
+```jsx
+const x = 3
+const y = function(txt) {
+	return `This is a text: ${txt}`
+}
+
+y('Hi')
+```
