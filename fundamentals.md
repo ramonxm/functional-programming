@@ -95,3 +95,24 @@ const y = function(txt) {
 
 y('Hi')
 ```
+## Immutability
+
+Immutability in functional programming refers to the concept that once a value is created, it cannot be changed. Instead, any operation that appears to modify the value actually creates a new value based on the original. This approach ensures that values are always predictable and can be safely shared and reused throughout a program.
+
+```jsx
+// This is not immutability because .sort() modified initial array
+const nums = [3, 1, 7, 9, 4, 6]
+nums.sort()
+
+console.log(nums)
+
+// This is a example the immutability because create a new array
+
+const nums = [3, 1, 7, 9, 4, 6]
+
+function order(array) {
+	return [...array].sort()
+}
+
+console.log(order(nums))
+```
