@@ -60,3 +60,26 @@ function sumImpure(a,b) {
 ```
 
 Because a side effect occurred in the function.
+## Higher Order Function
+
+Functions that operate on other functions, taking them as arguments or returning them, are called higher-order functions.
+
+```jsx
+function execute(fn, ...params) {
+	return function(text) {
+		return `${text} ${fn(...params)}`
+  }
+}
+
+function sum(a,b,c) {
+	return a + b + c
+}
+
+function multiple(a,b) {
+	return a * b
+}
+
+execute(sum, 4, 5, 6)('The result of sum is')
+execute(multiple, 10, 20)('The result of multiple is')
+
+```
