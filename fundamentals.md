@@ -175,3 +175,18 @@ myArray.length && someFunction(myArray);
 ```
 
 In this example, **`someFunction`** is only called if **`myArray`** has a **`length`** greater than **`0`**. If **`myArray`** is empty, **`someFunction`** is not called at all, since the **`&&`** operator only evaluates the second expression if the first one is **`true`**. This is an example of lazy evaluation in JavaScript.
+## Composition
+
+Function composition is a functional programming technique in which two or more functions are combined to form a new function. The output of the first function is passed as input to the second function, and so on. The result of the final function is the output of the composition of the functions.
+
+```jsx
+const add = x => x + 2;
+const multiply = x => x * 3;
+const subtract = x => x - 1;
+
+const composedFunction = (x) => subtract(multiply(add(x)));
+
+console.log(composedFunction(5)); // Output: 20
+```
+
+In this example, we have three simple functions that perform mathematical operations on an input value **`x`**. We then combine these functions using function composition to create a new function called **`composedFunction`**. This function takes an input value **`x`**, applies the **`add`**, **`multiply`**, and **`subtract`** functions in sequence, and returns the final result. When we call **`composedFunction(5)`**, the output is **`20`**, which is the result of the following sequence of operations: **`add(5)`** returns **`7`**, **`multiply(7)`** returns **`21`**, and **`subtract(21)`** returns **`20`**.
