@@ -116,3 +116,26 @@ function order(array) {
 
 console.log(order(nums))
 ```
+## Closure
+
+This is when a function “remembers” its lexical scope, even when the function runs outside that lexical scope.
+
+Example of a closure in JavaScript:
+
+```jsx
+function outerFunction() {
+  const outerVariable = 'I am in the outer function!';
+
+  function innerFunction() {
+    console.log(outerVariable);
+  }
+
+  return innerFunction;
+}
+
+const innerFunc = outerFunction();
+innerFunc(); // Output: "I am in the outer function!"
+
+```
+
+In this example, **`outerFunction`** is defined and returns the **`innerFunction`**. When we call **`outerFunction`**, it creates a variable **`outerVariable`** and defines **`innerFunction`**, which logs the value of **`outerVariable`** to the console. We then return **`innerFunction`** and store it in the **`innerFunc`** variable. When we call **`innerFunc`**, it still has access to **`outerVariable`** through the closure, even though **`outerFunction`** has completed execution.
