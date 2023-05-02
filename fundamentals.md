@@ -190,3 +190,22 @@ console.log(composedFunction(5)); // Output: 20
 ```
 
 In this example, we have three simple functions that perform mathematical operations on an input value **`x`**. We then combine these functions using function composition to create a new function called **`composedFunction`**. This function takes an input value **`x`**, applies the **`add`**, **`multiply`**, and **`subtract`** functions in sequence, and returns the final result. When we call **`composedFunction(5)`**, the output is **`20`**, which is the result of the following sequence of operations: **`add(5)`** returns **`7`**, **`multiply(7)`** returns **`21`**, and **`subtract(21)`** returns **`20`**.
+## Functors
+
+In functional programming, functors are objects or data structures that can be mapped over with a higher-order function, such as **`map`**. They are a way of abstracting and encapsulating common operations on different types of data.
+
+A functor is defined by two properties: a value and a mapping function. The mapping function takes a function as input, applies it to the value inside the functor, and returns a new functor with the transformed value.
+
+Here's an example of a functor in JavaScript using an array as the data structure:
+
+```jsx
+const myFunctor = [1, 2, 3];
+
+const addOne = (num) => num + 1;
+
+const mappedFunctor = myFunctor.map(addOne);
+
+console.log(mappedFunctor); // Output: [2, 3, 4]
+```
+
+In this example, we create an array **`myFunctor`** with three elements. We then define a function **`addOne`** that takes a number as input and returns the input value incremented by 1. We use the **`map`** function, which is a higher-order function, to apply **`addOne`** to each element in the array. The **`map`** function returns a new functor, which is an array in this case, with the transformed values. Finally, we log the new array to the console.
