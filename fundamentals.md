@@ -139,3 +139,23 @@ innerFunc(); // Output: "I am in the outer function!"
 ```
 
 In this example, **`outerFunction`** is defined and returns the **`innerFunction`**. When we call **`outerFunction`**, it creates a variable **`outerVariable`** and defines **`innerFunction`**, which logs the value of **`outerVariable`** to the console. We then return **`innerFunction`** and store it in the **`innerFunc`** variable. When we call **`innerFunc`**, it still has access to **`outerVariable`** through the closure, even though **`outerFunction`** has completed execution.
+## Currying
+
+That involves transforming a function that takes multiple arguments into a series of functions that each take a single argument. The returned function(s) then execute when all the arguments have been provided.
+
+For example:
+
+```jsx
+function add(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+
+const add2 = add(2); // Returns a function that adds 2 to a given number
+console.log(add2(3)); // Output: 5
+```
+
+In this example, **`add`** is a function that takes a single argument **`x`** and returns another function that takes a single argument **`y`**. When **`add`** is called with **`2`**, it returns a new function that adds **`2`** to any given number. We then call **`add2`** with **`3`**, which returns the sum **`5`**.
+
+Currying is a useful technique in functional programming, as it allows us to create more modular and reusable code by breaking down complex functions into simpler ones that can be composed together.
