@@ -159,3 +159,19 @@ console.log(add2(3)); // Output: 5
 In this example, **`add`** is a function that takes a single argument **`x`** and returns another function that takes a single argument **`y`**. When **`add`** is called with **`2`**, it returns a new function that adds **`2`** to any given number. We then call **`add2`** with **`3`**, which returns the sum **`5`**.
 
 Currying is a useful technique in functional programming, as it allows us to create more modular and reusable code by breaking down complex functions into simpler ones that can be composed together.
+## Lazy Evaluation
+
+Lazy evaluation is a programming technique where the evaluation of an expression is delayed until its value is actually needed. In other words, lazy evaluation means that an expression is not evaluated until the result is actually needed or requested by the program.
+
+In languages that use lazy evaluation, expressions are only evaluated when they are actually needed. This can lead to better performance and memory usage, as the program does not waste time or resources evaluating expressions that are never used.
+
+For example, in JavaScript, using lazy evaluation can be achieved with the use of **`&&`** and **`||`** operators. In the following code, **`someFunction`** is only called if **`myArray`** is not empty:
+
+```jsx
+const myArray = [1, 2, 3];
+
+// Using the && operator for lazy evaluation
+myArray.length && someFunction(myArray);
+```
+
+In this example, **`someFunction`** is only called if **`myArray`** has a **`length`** greater than **`0`**. If **`myArray`** is empty, **`someFunction`** is not called at all, since the **`&&`** operator only evaluates the second expression if the first one is **`true`**. This is an example of lazy evaluation in JavaScript.
