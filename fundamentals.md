@@ -209,3 +209,14 @@ console.log(mappedFunctor); // Output: [2, 3, 4]
 ```
 
 In this example, we create an array **`myFunctor`** with three elements. We then define a function **`addOne`** that takes a number as input and returns the input value incremented by 1. We use the **`map`** function, which is a higher-order function, to apply **`addOne`** to each element in the array. The **`map`** function returns a new functor, which is an array in this case, with the transformed values. Finally, we log the new array to the console.
+# Patterns
+
+---
+
+## Observer
+
+The Observer pattern is a design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any changes to its state. The main idea behind the Observer pattern is to decouple the subject from its observers, allowing for greater flexibility and reusability of code.
+
+In this pattern, the subject maintains a list of observers and provides a way for new observers to register and existing observers to unregister. When the subject's state changes, it notifies all its observers by calling a method on each one. This allows the observers to update themselves based on the new state of the subject.
+
+The Observer pattern is widely used in GUI frameworks, event-driven architectures, and other systems where changes to an object's state need to be propagated to other parts of the system.
