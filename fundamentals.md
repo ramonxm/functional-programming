@@ -220,3 +220,37 @@ The Observer pattern is a design pattern in which an object, called the subject,
 In this pattern, the subject maintains a list of observers and provides a way for new observers to register and existing observers to unregister. When the subject's state changes, it notifies all its observers by calling a method on each one. This allows the observers to update themselves based on the new state of the subject.
 
 The Observer pattern is widely used in GUI frameworks, event-driven architectures, and other systems where changes to an object's state need to be propagated to other parts of the system.
+In JavaScript, the Observer pattern can be implemented using callbacks, events, or the Observable class introduced in ECMAScript 2015. For instance, we can create an observable object and add one or more observers to it using the Observable class as follows:
+
+```jsx
+class MyObservable {
+  constructor() {
+    this.observers = [];
+  }
+
+  subscribe(observer) {
+    this.observers.push(observer);
+  }
+
+  unsubscribe(observer) {
+    this.observers = this.observers.filter(obs => obs !== observer);
+  }
+
+  notify(data) {
+    this.observers.forEach(observer => observer(data));
+  }
+}
+
+const myObservable = new MyObservable();
+
+const myObserver = data => {
+  console.log('Data received:', data);
+};
+
+myObservable.subscribe(myObserver);
+myObservable.notify('Hello World!');
+```
+
+In this example, we define a class **`MyObservable`** that has three methods: **`subscribe`**, **`unsubscribe`**, and **`notify`**. The **`subscribe`** method adds a new observer to the list of observers, **`unsubscribe`** removes an observer from the list, and **`notify`** calls all the observers with the provided data.
+
+We then create an instance of **`MyObservable`** called **`myObservable`** and add an observer called **`myObserver`** using the **`subscribe`** method. Finally, we call the **`notify`** method with some data, and the observer receives it and logs it to the console.
