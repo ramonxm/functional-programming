@@ -1,4 +1,4 @@
-const { interval, Observable } = require("rxjs");
+const { interval, Observable, noop } = require("rxjs");
 
 // Subscribe & Unsubscribe
 const generateNumbers = interval(500);
@@ -38,3 +38,20 @@ observer.subscribe({
   error: (error) => console.log(error),
   complete: () => console.log("complete"),
 });
+
+function entry(min, max) {
+  return new Observable((subscriber) => {
+    Array(max - min)
+      .fill()
+      .map((_, i) => {
+        subscriber.next(i);
+      });
+    subscriber.complete();
+  });
+}
+
+entry(4, 10).subscribe(
+  (num) => console.log(`num${num}`),
+  noop,
+  () => console.log("End")
+);
