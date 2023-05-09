@@ -1,4 +1,6 @@
-const { interval, Observable, noop } = require("rxjs");
+const { interval, Observable, noop, of, from } = require("rxjs");
+
+const { last, map } = require("rxjs/operators");
 
 // Subscribe & Unsubscribe
 const generateNumbers = interval(500);
@@ -50,8 +52,25 @@ function entry(min, max) {
   });
 }
 
+// deprecated
 entry(4, 10).subscribe(
   (num) => console.log(`num${num}`),
   noop,
   () => console.log("End")
 );
+
+// Operators
+
+// of -> creation operator
+// last -> chained operator (Pipeable Op.)
+
+of(1, 2, "ana", false, "ultimo")
+  .pipe(last())
+  .subscribe((value) => console.log(`This valor is ${value}`));
+
+from([1, 2, "ana", false, "ultimo"])
+  .pipe(
+    last(),
+    map((v) => v)
+  )
+  .subscribe((value) => console.log(`This valor is ${value}`));
