@@ -1,6 +1,13 @@
-const { interval, Observable, noop, of, from } = require("rxjs");
+const {
+  interval,
+  Observable,
+  noop,
+  of,
+  from,
+  asyncScheduler,
+} = require("rxjs");
 
-const { last, map, concatAll } = require("rxjs/operators");
+const { last, map, concatAll, observeOn } = require("rxjs/operators");
 
 // Subscribe & Unsubscribe
 const generateNumbers = interval(500);
@@ -80,4 +87,10 @@ interval(1000)
     map((_) => [1, 2, 3]),
     concatAll()
   )
+  .subscribe(console.log);
+
+// Scheduler
+
+from([1, 2, 3, 4, 5, 6, 7, 7, 8, 9, 10])
+  .pipe(observeOn(asyncScheduler))
   .subscribe(console.log);
