@@ -1,6 +1,6 @@
 const { interval, Observable, noop, of, from } = require("rxjs");
 
-const { last, map } = require("rxjs/operators");
+const { last, map, concatAll } = require("rxjs/operators");
 
 // Subscribe & Unsubscribe
 const generateNumbers = interval(500);
@@ -74,3 +74,10 @@ from([1, 2, "ana", false, "ultimo"])
     map((v) => v)
   )
   .subscribe((value) => console.log(`This valor is ${value}`));
+
+interval(1000)
+  .pipe(
+    map((_) => [1, 2, 3]),
+    concatAll()
+  )
+  .subscribe(console.log);
